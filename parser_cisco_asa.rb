@@ -1,6 +1,6 @@
 require 'fluent/plugin/parser'
 
-module Fluent::Plugin
+module Fluent
   class TextParser
     class FirewallParser < Parser
       # Register this parser as "firewall"
