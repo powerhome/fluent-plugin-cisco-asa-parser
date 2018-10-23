@@ -4,7 +4,7 @@ module Fluent::Plugin
   class TextParser
     class FirewallParser < Parser
       # Register this parser as "firewall"
-      Plugin.register_parser("cisco_asa", self)
+      Fluent::Plugin.register_parser("cisco_asa", self)
 
       TIME = '\w+\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}'
       IPV4 = '\d{1,3}(?:\.\d{1,3}){3}'
