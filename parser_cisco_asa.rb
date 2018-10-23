@@ -1,11 +1,11 @@
-require 'fluent/parser'
+require 'fluent/plugin/parser'
 
-module Fluent
+module Fluent::Plugin
   class TextParser
     class FirewallParser < Parser
       # Register this parser as "firewall"
       Fluent::Plugin.register_parser("cisco_asa", self)
-      
+
       TIME = '\w+\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}'
       IPV4 = '\d{1,3}(?:\.\d{1,3}){3}'
       IPV6 = '[0-9a-fA-F]{1,4}(?:::?[0-9a-fA-F]{1,4}){1,7}'
@@ -51,7 +51,7 @@ module Fluent
           yield nil, nil
         else
           names = m.names
-          
+
           time = @time_parser.parse(m['time'])
           record["ip_fw"] = m['ip_fw']
           record["action"] = m['action']
@@ -68,7 +68,7 @@ module Fluent
           record["port_local"] = m['port_local'].to_i if m['port_local']
           record["icmp_type"] = m['icmp_type'].to_i if m['icmp_type']
           record["icmp_code"] = m['icmp_code'].to_i if m['icmp_code']
-          
+
           yield time, record
         end
       end
