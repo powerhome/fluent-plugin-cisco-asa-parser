@@ -3,7 +3,7 @@ require 'fluent/plugin/parser'
 module Fluent::Plugin
   class FirewallParser < Parser
     # Register this parser as "firewall"
-    Plugin.register_parser("cisco_asa", self)
+    Fluent::Plugin.register_parser("cisco_asa", self)
 
     TIME = '\w+\s+\d{1,2}\s+\d{2}:\d{2}:\d{2}'
     IPV4 = '\d{1,3}(?:\.\d{1,3}){3}'
@@ -37,7 +37,7 @@ module Fluent::Plugin
       super
       # TimeParser class is already given. It takes a single argument as the time format
       # to parse the time string with.
-      @time_parser = TimeParser.new(TIME_FORMAT)
+      @time_parser = Fluent::TimeParser.new(TIME_FORMAT)
     end
 
     # This is the main method. The input "text" is the unit of data to be parsed.
